@@ -8,25 +8,40 @@ import org.junit.jupiter.api.Test;
 class LibraryTest {
 
 	private Library library;
-    private BookRepositroy bookRepository;
+	private BookRepositroy bookRepository;
 
-    @BeforeEach
-    public void init() {
-        bookRepository = new InMemoryBookRepository();
-        library = new LibraryService(bookRepository);
-    }
-	
-	//verify book is added
+	@BeforeEach
+	public void init() {
+		bookRepository = new InMemoryBookRepository();
+		library = new LibraryService(bookRepository);
+	}
+
+	// verify book is added
 	@Test
 	void testBookAdd() {
 		int bookCount = library.getTotalBookCount();
-		Book book = new Book("123456789","Refactoring","Robert C. Martin",2008);
-		
-		//add book into library
+		Book book = new Book("123456789", "Refactoring", "Robert C. Martin", 2008);
+
+		// add book into library
+		library.addBook(book);
+
+		// verify book count to check book is added
+		assertEquals(bookCount + 1, library.getTotalBookCount());
+	}
+
+	// verify book is brrowed
+	@Test
+	void testBookBorrow() {
+		Book book = new Book("123456789", "Refactoring", "Robert C. Martin", 2008);
+
+		// add book into library
 		library.addBook(book);
 		
-		//verify book count to check book is added
-		assertEquals(bookCount+1, library.getTotalBookCount());
+		//borrow book
+		library.borrowBook(book.getIsbn());
+		
+		// verify book is borrowed
+		assertFalse(book.isAvailable());
 	}
 
 }
