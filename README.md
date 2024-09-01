@@ -118,9 +118,12 @@ The Library Management System provides the following key features:
 
 This project follows Test-Driven Development (TDD) principles, ensuring that all functionalities are thoroughly tested. The test cases cover various scenarios, including adding books, borrowing available books, returning borrowed books, and viewing available books.
 
+## Testing Freamwork:
+
+- JUnit 5
+
 ### Test Report
 
-Maven generates a detailed test report that provides information on the test execution, including:
 
     Number of Tests: 5
     Passed Tests: 5
