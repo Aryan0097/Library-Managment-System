@@ -18,4 +18,13 @@ public class LibraryService implements Library {
 		return bookRepository.getTotalBookCount();
 	}
 
+	@Override
+	public void borrowBook(String isbn) throws BookNotAvailableException {
+        Book book = bookRepository.findByIsbn(isbn).orElseThrow(BookNotAvailableException::new);
+        if (!book.isAvailable()) {
+            throw new BookNotAvailableException();
+        }
+        book.setAvailable(false);
+    }
+
 }

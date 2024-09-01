@@ -8,5 +8,7 @@ public interface Library {
 	//method to get Total book in library
 	public int getTotalBookCount();
 
+	public void borrowBook(String isbn) throws BookNotAvailableException ;
+
 
 }

@@ -31,7 +31,7 @@ class LibraryTest {
 
 	// verify book is brrowed
 	@Test
-	void testBookBorrow() {
+	void testBookBorrow() throws BookNotAvailableException  {
 		Book book = new Book("123456789", "Refactoring", "Robert C. Martin", 2008);
 
 		// add book into library
@@ -43,5 +43,12 @@ class LibraryTest {
 		// verify book is borrowed
 		assertFalse(book.isAvailable());
 	}
+	
+	@Test
+    public void testBorrowBookNotAvailable() {
+        assertThrows(BookNotAvailableException.class, () -> {
+            library.borrowBook("wrongIsbn");
+        });
+    }
 
 }
