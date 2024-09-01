@@ -44,6 +44,24 @@ class LibraryTest {
 		assertFalse(book.isAvailable());
 	}
 	
+	// verify book is returned
+	@Test
+	public void testReturnBook() {
+	    Book book = new Book("74125598963", "Title", "Author", 2021);
+	    
+	    //add book in library
+	    library.addBook(book);
+	    
+	    //borrow book from library
+	    library.borrowBook(book.getIsbn());
+	    
+	    //return book to library
+	    library.returnBook(book);
+	    
+	    // verify book is returned
+	    assertTrue(book.isAvailable());
+	}
+	
 	@Test
     public void testBorrowBookNotAvailable() {
         assertThrows(BookNotAvailableException.class, () -> {
