@@ -62,6 +62,21 @@ class LibraryTest {
 	    assertTrue(book.isAvailable());
 	}
 	
+	// get all available books
+	@Test
+	public void testViewAvailableBooks() {
+	    Book availableBook = new Book("5262364734", "Effective Java", "Joshua Bloch", 2001);
+	    Book borrowedBook = new Book("123456789", "Refactoring", "Robert C. Martin", 2008);
+	    
+	    library.addBook(availableBook);
+	    library.addBook(borrowedBook);
+	    library.borrowBook(borrowedBook.getIsbn());
+	    
+	    List<Book> availableBooks = library.getAvailableBooks();
+	    assertTrue(availableBooks.contains(availableBook));
+	    assertFalse(availableBooks.contains(borrowedBook));
+	}
+	
 	@Test
     public void testBorrowBookNotAvailable() {
         assertThrows(BookNotAvailableException.class, () -> {
