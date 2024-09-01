@@ -24,7 +24,17 @@ public class LibraryService implements Library {
         if (!book.isAvailable()) {
             throw new BookNotAvailableException();
         }
+        
+        //setbook as unavailable
         book.setAvailable(false);
+    }
+
+	@Override
+    public void returnBook(Book book) {
+        Book storedBook = bookRepository.findByIsbn(book.getIsbn()).orElseThrow(() -> new RuntimeException("Book not found in repository"));
+        
+        //set book as available
+        storedBook.setAvailable(true);
     }
 
 }
