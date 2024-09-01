@@ -1,5 +1,7 @@
 package com.libraryManegmentSystem.app;
 
+import java.util.List;
+
 public class LibraryService implements Library {
 
 	private final BookRepositroy bookRepository;
@@ -35,6 +37,13 @@ public class LibraryService implements Library {
         
         //set book as available
         storedBook.setAvailable(true);
+    }
+
+	@Override
+    public List<Book> getAvailableBooks() {
+        return bookRepository.getAllBooks().stream()
+                             .filter(Book::isAvailable)
+                             .toList();
     }
 
 }

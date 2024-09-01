@@ -23,4 +23,9 @@ public class InMemoryBookRepository implements BookRepositroy {
         return books.stream().filter(book -> book.getIsbn().equals(isbn)).findFirst();
     }
 
+	@Override
+    public List<Book> getAllBooks() {
+        return new ArrayList<>(books);
+    }
+
 }

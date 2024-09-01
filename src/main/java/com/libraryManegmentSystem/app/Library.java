@@ -1,5 +1,7 @@
 package com.libraryManegmentSystem.app;
 
+import java.util.List;
+
 public interface Library {
 	
 	//method to add Book
@@ -13,6 +15,8 @@ public interface Library {
 
 	//method to return book
 	public void returnBook(Book book);
+
+	public List<Book> getAvailableBooks();
 
 
 }

@@ -2,6 +2,8 @@ package com.libraryManegmentSystem.app;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -68,12 +70,19 @@ class LibraryTest {
 	    Book availableBook = new Book("5262364734", "Effective Java", "Joshua Bloch", 2001);
 	    Book borrowedBook = new Book("123456789", "Refactoring", "Robert C. Martin", 2008);
 	    
+	    //add book into library
 	    library.addBook(availableBook);
 	    library.addBook(borrowedBook);
+	    
+	    //borrow book from library
 	    library.borrowBook(borrowedBook.getIsbn());
 	    
+	    //get available books
 	    List<Book> availableBooks = library.getAvailableBooks();
+	    
+	    // verify available books
 	    assertTrue(availableBooks.contains(availableBook));
+	    // verify unavailable books
 	    assertFalse(availableBooks.contains(borrowedBook));
 	}
 	
